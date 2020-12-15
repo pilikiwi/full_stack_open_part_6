@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export const vote = (id) => {
+export const castVote = (id) => {
   return {
     type: 'VOTE',
     data: { id }
