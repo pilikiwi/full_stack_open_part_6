@@ -1,7 +1,30 @@
-const notificationStart = 'Notification shows here...'
+const notificationReducer = (state='Notification shows here...', action) => {
 
-const notificationReducer = (state=notificationStart) =>{
-    return state
+    switch(action.type){
+    case 'setNotification':
+        return action.data
+    case 'removeNotification':
+        return ''
+    default:
+        return state
+    }
+}
+
+
+
+export const setNotification = (data, timer) => {
+    return  {
+        type:'setNotification',
+        data,
+        }
+}
+
+export const removeNotification = () => {
+
+    return {
+            type: 'removeNotification',
+        }
+
 }
 
 export default notificationReducer
