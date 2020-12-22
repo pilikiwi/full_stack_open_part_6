@@ -1,12 +1,14 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { castVote } from '../reducers/anecdoteReducer'
+import { setNotification, removeNotification } from '../reducers/notificationReducer'
 
 const Anecdote = ({ anecdote, handleClick }) =>{
+  const dispatch = useDispatch()
     return (
        <div onClick={handleClick}>
            {anecdote.content} has {anecdote.votes} votes.
-           <button>Vote</button>
+           <button onClick={()=>dispatch(setNotification('You voted for...' + anecdote.content))}>Vote</button>
        </div> 
     )
 }
@@ -15,8 +17,8 @@ const Anecdote = ({ anecdote, handleClick }) =>{
 const AnecdoteList = () => {
     const anecdotes = useSelector(state => state.anecdotes)
     const dispatch = useDispatch()
-    
-  const byVotes = (a, b) => b.votes - a.votes
+
+    const byVotes = (a, b) => b.votes - a.votes
 
   return (
     <ul>
@@ -24,7 +26,8 @@ const AnecdoteList = () => {
         <Anecdote 
             key = {anecdote.id}
             anecdote = {anecdote}
-            handleClick = {()=> dispatch(castVote(anecdote.id))}
+            handleClick = {()=> dispatch(castVote(anecdote.id))
+              }
         />
       )}
     </ul>
@@ -32,3 +35,5 @@ const AnecdoteList = () => {
 }
 
 export default AnecdoteList
+//()=>dispatch(setNotification('You voted for...'))
+//()=>dispatch(setNotification('You voted for...' + anecdote.content))
