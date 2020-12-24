@@ -35,5 +35,3 @@ const AnecdoteList = () => {
 }
 
 export default AnecdoteList
-//()=>dispatch(setNotification('You voted for...'))
-//()=>dispatch(setNotification('You voted for...' + anecdote.content))
